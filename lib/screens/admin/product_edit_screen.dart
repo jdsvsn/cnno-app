@@ -1,4 +1,4 @@
-import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -40,7 +40,7 @@ class _ProductEditScreenState extends State<ProductEditScreen> {
   late final List<_VariantFields> _variants = (widget.product?.variants ?? const [ProductVariant(name: 'Single', price: 0)])
       .map((v) => _VariantFields(v.name, v.price == 0 ? '' : v.price.toStringAsFixed(2)))
       .toList();
-  File? _photo;
+  Uint8List? _photo;
   bool _saving = false;
 
   @override
@@ -56,7 +56,9 @@ class _ProductEditScreenState extends State<ProductEditScreen> {
 
   Future<void> _pickPhoto() async {
     final x = await ImagePicker().pickImage(source: ImageSource.gallery, maxWidth: 1200, imageQuality: 85);
-    if (x != null) setState(() => _photo = File(x.path));
+    if (x == null) return;
+    final bytes = await x.readAsBytes();
+    if (mounted) setState(() => _photo = bytes);
   }
 
   Future<void> _save() async {
@@ -121,7 +123,7 @@ class _ProductEditScreenState extends State<ProductEditScreen> {
                   decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(16)),
                   child: _photo != null
                       ? ClipRRect(
-                          borderRadius: BorderRadius.circular(16), child: Image.file(_photo!, fit: BoxFit.cover))
+                          borderRadius: BorderRadius.circular(16), child: Image.memory(_photo!, fit: BoxFit.cover))
                       : widget.product != null
                           ? ProductImage.of(widget.product!, size: 120)
                           : const Icon(Icons.add_a_photo_outlined, size: 40, color: CnnoColors.muted),

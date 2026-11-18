@@ -1,4 +1,4 @@
-import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -34,11 +34,11 @@ class ProductRepository {
   Future<void> delete(String id) => _col.doc(id).delete();
 
   /// Uploads an admin photo to Cloud Storage and returns its download URL.
-  Future<String> uploadPhoto(File file) async {
+  Future<String> uploadPhoto(Uint8List bytes) async {
     final storage = _storage ?? FirebaseStorage.instance;
     final ref = storage
         .ref('products/${DateTime.now().millisecondsSinceEpoch}.jpg');
-    await ref.putFile(file, SettableMetadata(contentType: 'image/jpeg'));
+    await ref.putData(bytes, SettableMetadata(contentType: 'image/jpeg'));
     return ref.getDownloadURL();
   }
 

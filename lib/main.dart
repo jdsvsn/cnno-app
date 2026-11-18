@@ -1,4 +1,5 @@
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -38,7 +39,38 @@ class CnnoApp extends StatelessWidget {
         title: 'CNNO',
         debugShowCheckedModeBanner: false,
         theme: buildTheme(),
+        builder: (context, child) => kIsWeb ? _PhoneFrame(child: child!) : child!,
         home: const _Root(),
+      ),
+    );
+  }
+}
+
+/// On a laptop browser (demo only), show the app at phone size (390 x 844, as in Figma).
+class _PhoneFrame extends StatelessWidget {
+  const _PhoneFrame({required this.child});
+  final Widget child;
+
+  @override
+  Widget build(BuildContext context) {
+    final size = MediaQuery.sizeOf(context);
+    if (size.width < 500) return child;
+    return ColoredBox(
+      color: const Color(0xFF3A0A14),
+      child: Center(
+        child: Container(
+          width: 390,
+          height: size.height < 884 ? size.height - 40 : 844,
+          clipBehavior: Clip.antiAlias,
+          decoration: BoxDecoration(borderRadius: BorderRadius.circular(32)),
+          child: MediaQuery(
+            data: MediaQuery.of(context).copyWith(
+              size: Size(390, size.height < 884 ? size.height - 40 : 844),
+              padding: const EdgeInsets.only(top: 24),
+            ),
+            child: child,
+          ),
+        ),
       ),
     );
   }
