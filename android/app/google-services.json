@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "269163833631",
+    "project_id": "cnno-app-g19",
+    "storage_bucket": "cnno-app-g19.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:269163833631:android:63a3f253c139df80cce82a",
+        "android_client_info": {
+          "package_name": "com.cinnamoncodes.cnno_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCcG9USxqmMxcSv6FR4_muIvhNA9Fw-zpI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
