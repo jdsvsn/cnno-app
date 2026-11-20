@@ -58,6 +58,24 @@ docs/                  Firebase setup guide, LOGAI
    flutter test
    ```
 
+## Web demo
+
+A web build for laptop demos runs at https://cnno-app-g19.web.app (phone-size frame). To update it:
+
+```
+flutter build web --release
+firebase deploy --only hosting
+```
+
+## How we work
+
+1. Pick your GitHub issue (one per requirement, e.g. FR-05 is #5).
+2. Pull the latest `main`, then create a branch: `git checkout -b feature/fr-05-cart`.
+3. Commit small changes with clear messages, then `git push -u origin <branch>`.
+4. Open a pull request into `main`. Write `Refs #<issue>` (or `Closes #<issue>` when the requirement is done) in the description.
+5. The **Flutter tests** check must pass and one teammate reviews before merging.
+6. If AI helped with the change, add a line to [docs/LOGAI.md](docs/LOGAI.md) with the PR number.
+
 ## Admin account
 
 Register normally in the app, then in the Firebase console open **Firestore > users > (that user)** and change `role` from `customer` to `admin`. Log in again: the admin dashboard opens. Go to **Settings > Load CNNO menu** to load the agreed menu.
