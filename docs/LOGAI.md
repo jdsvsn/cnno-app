@@ -5,6 +5,7 @@ Course rule: significant AI-assisted work is recorded here and linked to the fea
 | Date | Tool | Feature / FR | What AI produced | Human review | PR / commit |
 |---|---|---|---|---|---|
 | 2026-11-18 | Claude Code (Claude Opus 5.5) | FR-01 to FR-14, FR-AI-01, FR-AI-02 (early version for M2) | Flutter project structure, models, Provider state, Firebase services, all 9 screens from the Figma mockup, Firestore and Storage rules, Cloud Functions (Gemini recommendation and assistant, email receipt), unit tests for business rules | Jude: reviewed against CLAUDE.md, SRS and Figma; ran `flutter analyze` and `flutter test` | Initial app commit |
+| 2026-11-20 | Claude Code (Claude Opus 5.5) | FR-05, FR-07, FR-08, FR-09, FR-AI-01, FR-AI-03; team workflow | Unit tests for order model, formatting, cart and AI fallback; GitHub Actions test workflow; AppConfig message refactor; README workflow section | Jude: reviewed each change; ran `flutter analyze` and `flutter test` (46 tests pass) | #20, #21, #22, #23, #24, #25, #26 |
 
 ## Notes on AI design (FR-AI-01, FR-AI-02)
 
