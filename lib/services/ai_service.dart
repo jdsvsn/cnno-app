@@ -86,7 +86,7 @@ class AiService {
       final reply = (Map<String, dynamic>.from(res.data)['reply'] as String?)?.trim();
       return (reply == null || reply.isEmpty) ? AppConfig.contactCnnoMessage : reply;
     } catch (_) {
-      return 'The assistant is not available right now. Please contact CNNO directly and they will help you.';
+      return AppConfig.assistantUnavailableMessage;
     }
   }
 }

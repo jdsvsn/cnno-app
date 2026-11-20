@@ -22,5 +22,9 @@ class AppConfig {
   static const String contactCnnoMessage =
       'I am not sure about that one. Please contact CNNO directly and they will help you.';
 
+  /// Shown when the Order Assistant cannot be reached (FR-AI-03).
+  static const String assistantUnavailableMessage =
+      'The assistant is not available right now. Please contact CNNO directly and they will help you.';
+
   static const String brandText = "cnno's bakes";
 }
